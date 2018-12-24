@@ -6,7 +6,7 @@ export default class Header extends Component {
 		return (
 			<header class={style.header}>
         <h1>
-          export your Twitter GIF from URL
+          get any Twitter GIF from URL
         </h1>
 				<nav>
 					{/* <a href="/">Home</a>

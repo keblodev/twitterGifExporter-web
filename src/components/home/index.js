@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
 import style from './style.less';
 
+import {BASE_URL} from '../../statics/config'
+
 export default class Home extends Component {
 
   _url = ""
@@ -72,7 +74,7 @@ export default class Home extends Component {
                     style.img,
                     !this.state.loaded ? style.imgSpin : ""
                   ].join(" ")}
-                  src={"http://localhost:3000/process?url="+this.state.url}></img>
+                  src={`${BASE_URL}/process?url=`+this.state.url}></img>
 
                   {
                     this.state.loaded ? (
