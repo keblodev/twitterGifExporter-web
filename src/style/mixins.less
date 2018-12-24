@@ -1,0 +1,64 @@
+.fill() {
+	height:     100%;
+	left:       0;
+	position:   absolute;
+	top:        0;
+	width:      100%;
+}
+
+.scroll() {
+	overflow:           auto;
+	overflow-scrolling: touch;
+
+	& > .inner {
+		overflow:   hidden;
+		position:   relative;
+		transform:  translateZ(0);
+	}
+}
+
+.fullscreen-fixed() {
+    left:       0;
+    right:      0;
+    top:        0;
+    bottom:     0;
+    position:   fixed;
+}
+
+.top-left-right-absolute() {
+    left:       0;
+    right:      0;
+    top:        0;
+    position:   absolute;
+}
+
+.transition(...) {
+    transition-duration:        @app-transition-time;
+    transition-timing-function: @app-transition-type;
+    transition-delay:           initial;
+
+    @props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
+
+    -webkit-transition-property:    @props;
+    -moz-transition-property:       @props;
+    -o-transition-property:         @props;
+    transition-property:            @props;
+}
+
+.flex-justify-align() {
+    align-items:        center;
+    display:            flex;
+    justify-content:    center;
+}
+
+.labelInfo {
+    font-size: @font-small-s;
+    color:     gray;
+}
+
+.labelWarning {
+    color:              @white;
+    background-color:   @date-attention-bg-c;
+    border-radius:      @app-main-ui-radius;
+    padding:            10px;
+}

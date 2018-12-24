@@ -1,0 +1,27 @@
+{
+  "sourceMaps": true,
+  "presets": [
+    ["es2015", { "loose":true }],
+    "stage-0"
+  ],
+  "plugins": [
+    ["transform-async-to-generator"],
+    ["transform-decorators-legacy"],
+    ["transform-react-jsx", { "pragma": "h" }]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        ["dynamic-import-node"],
+        ["module-resolver", {
+            "root": ["./src"],
+            "alias": {
+                "react": "preact-compat",
+                "react-dom": "preact-compat",
+                "react-redux": "preact-redux"
+            }
+          }]
+      ]
+    }
+  }
+}
