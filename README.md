@@ -1,6 +1,6 @@
 # twitterGifExporter-web
 
-checki out here -> https://twitter-gif-web.herokuapp.com/
+check it out here -> https://twitter-gif-web.herokuapp.com/
 
 web app for twitterGifExporter:
 
