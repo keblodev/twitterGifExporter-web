@@ -2,6 +2,8 @@
 
 check it out here -> https://twitter-gif-web.herokuapp.com/
 
+Export twitter's MP4 video "gif" in to an actual .gif
+
 web app for twitterGifExporter:
 
 https://github.com/ronanamsterdam/twitterGifexporter
