@@ -74,7 +74,7 @@ export default class Home extends Component {
                     style.img,
                     !this.state.loaded ? style.imgSpin : ""
                   ].join(" ")}
-                  src={`${BASE_URL}/process?url=`+this.state.url}></img>
+                  src={`${BASE_URL}/process?url=${this.state.url}&kintok=${process.env.KINTOK}`}></img>
 
                   {
                     this.state.loaded ? (
