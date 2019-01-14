@@ -260,6 +260,7 @@ module.exports = {
                 LOCAL_STORAGE_KEY:          JSON.stringify(process.env.LOCAL_STORAGE_KEY),
                 APP_VERSION:                JSON.stringify(process.env.APP_VERSION),
                 BASE_URL:                   JSON.stringify(process.env.BASE_URL),
+                KINTOK:                     JSON.stringify(process.env.KINTOK),
             }
         }),
         new HtmlWebpackPlugin({
