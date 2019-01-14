@@ -1,6 +1,6 @@
 # twitterGifExporter-web
 
-check it out here -> https://twitter-gif-web.herokuapp.com/
+check it out here -> https://twitterclient-master-twittergifdepl.web.kintohub.com
 
 Export twitter's MP4 video "gif" in to an actual .gif
 
