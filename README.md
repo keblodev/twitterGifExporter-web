@@ -12,5 +12,3 @@ https://github.com/ronanamsterdam/twitterGifexporter
 
 1. `npm i`
 2. `npm start`
-
-# On heroku -> just deploy it there
