@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --progress --mode=development",
-    "start": "serve -p $PORT build -s -c 1",
+    "start": "serve -p 5000 build -s -c 1",
     "start_serve": "serve -p $PORT build -s -c 1",
     "start_report": "cross-env GEN_ANALITICS=run npm start",
     "prestart": "npm run build",
