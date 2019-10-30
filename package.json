@@ -79,7 +79,7 @@
     "css-loader": "0.28.0",
     "dotenv-webpack": "1.5.7",
     "ejs-compiled-loader": "1.1.0",
-    "eslint": "4.1.0",
+    "eslint": "4.18.2",
     "eslint-plugin-jest": "21.7.1",
     "eslint-plugin-react": "7.0.0",
     "extract-text-webpack-plugin": "3.0.2",
