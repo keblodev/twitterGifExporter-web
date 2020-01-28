@@ -33,11 +33,9 @@ export default class Home extends Component {
     }
   }
 
-
-
   render = () => {
+    // TODO:
     const kintok = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDEiLCJhdWQiOiJLaW50b0h1YkdhdGV3YXkiLCJleHAiOjE1Njk4MzM0MzAsImlhdCI6MTU2ODYyMzgzMCwiaXNzIjoiS2ludG9IdWJHYXRld2F5Iiwic3ViIjoie1wic2Vzc2lvbklkXCI6XCIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDFcIn0ifQ.OSeVXgThvROslyHEUFSeTNSOUuudlFSxD87u6PCt9VM'
-
     const baseUrl = 'https://e229472f-d0e1-4705-a961-ac77d8349f81.api.beta.kintohub.com/twitterapi'
 
     return (
