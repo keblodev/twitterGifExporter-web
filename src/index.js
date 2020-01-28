@@ -1,10 +1,11 @@
-import { h, render } from 'preact';
-import './style';
+import React from 'react';
 
 import { configureStore } from './store/configureStore-ENV_TARGET';
 import { history } from './store/configureStore-ENV_TARGET';
 
 const store = configureStore();
+
+import './style/index.less';
 
 let root;
 function init() {

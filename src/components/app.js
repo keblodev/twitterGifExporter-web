@@ -1,17 +1,16 @@
-import { h, Component } from 'preact';
-import { Router } from 'preact-router';
-import Async from 'react-code-splitting';
-
-import { connect }              from 'react-redux';
-import { bindActionCreators }   from 'redux';
-import AppActions               from 'actions';
+import React from 'react';
+// import { Router } from 'preact-router';
+// import Async from 'react-code-splitting';
+import Header from './header';
 
 import style from './style.less';
 
-const Header = ({...rest}) => <Async
-    load={import('./header')}
-    componentProps={{...rest}}
-/>;
+
+
+// const Header = ({...rest}) => <Async
+//     load={import('./header')}
+//     componentProps={{...rest}}
+// />;
 
 // const About = ({...rest}) => <Async
 //   load={import('./shared/statics/about')}
@@ -20,43 +19,24 @@ const Header = ({...rest}) => <Async
 
 import Home from './home';
 
-class App extends Component {
+export default function({history}) {
 
-  componentWillMount() {
-    // TODO:
-    // this.props.actions.appInit()
-  }
+    // handleRoute = e => {
+    //   this.currentUrl = e.url;
+    // };
 
-  handleRoute = e => {
-    this.currentUrl = e.url;
-  };
-
-  render({history}) {
     return (
       <div id="app">
-        <div class={[
+        <div className={[
             style.appContainer,
         ].join(' ')}>
           <Header />
-          <Router
+          {/* <Router
             history={history}
-            onChange={this.handleRoute}>
+            onChange={this.handleRoute}> */}
             <Home path="/" />
-          </Router>
+          {/* </Router> */}
         </div>
       </div>
     );
   }
-}
-
-const mapState = (state) => ({
-  // TODO
-  // modalActive:    state.app.ui.modal.active,
-});
-
-const mapDispatch = dispatch => ({
-  actions: bindActionCreators(AppActions, dispatch)
-});
-
-export default
-  connect(mapState, mapDispatch)(App);

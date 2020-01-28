@@ -1,5 +1,5 @@
-import { h, Component } from 'preact';
-import style from './style.less';
+import React, { Component } from 'react';
+import style from './style.module.less';
 
 import {BASE_URL} from '../../statics/config'
 
@@ -33,34 +33,40 @@ export default class Home extends Component {
     }
   }
 
+
+
   render = () => {
+    const kintok = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDEiLCJhdWQiOiJLaW50b0h1YkdhdGV3YXkiLCJleHAiOjE1Njk4MzM0MzAsImlhdCI6MTU2ODYyMzgzMCwiaXNzIjoiS2ludG9IdWJHYXRld2F5Iiwic3ViIjoie1wic2Vzc2lvbklkXCI6XCIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDFcIn0ifQ.OSeVXgThvROslyHEUFSeTNSOUuudlFSxD87u6PCt9VM'
+
+    const baseUrl = 'https://e229472f-d0e1-4705-a961-ac77d8349f81.api.beta.kintohub.com/twitterapi'
+
     return (
-      <div class={style.home}>
+      <div className={style.home}>
         <div
-            class={style.homeContainer}
+            className={style.homeContainer}
         >
             <h1>You found it! A simple Twitter GIF converter!</h1>
             <h2>Just paste your twitter link bellow and wait for magic to happen.</h2>
             <div
-              class={style.inputContainer}
+              className={style.inputContainer}
             >
               <input
                 tabIndex="1"
                 placeholder="paste your url here and press a button..."
-                class={style.input}
+                className={style.input}
                 type="text"
-                onkeyup={this.onKeyUp}
+                onKeyUp={this.onKeyUp}
                 onChange={this.onChange}
               />
               <button
-                class={style.button}
+                className={style.button}
                 tabIndex="2"
-                onClick={this.onSubmit}
+                // onClick={this.onSubmit}
               >Get that shit</button>
             </div>
             {
               this.state.url ? (
-                <div style="margin: 30px;">
+                <div style={{margin: '30px'}}>
                   {
                     !this.state.loaded ? (
                       <div>
@@ -69,12 +75,13 @@ export default class Home extends Component {
                     ) : null
                   }
                   <img
-                  onload={()=> this.setState({loaded: true})}
-                  class={[
+                  onLoad={()=> this.setState({loaded: true})}
+                  className={[
                     style.img,
                     !this.state.loaded ? style.imgSpin : ""
                   ].join(" ")}
-                  src={`${BASE_URL}/process?url=${this.state.url}&kintok=${process.env.KINTOK}`}></img>
+                  // process.env.KINTOK
+                  src={`${baseUrl}/process?url=${this.state.url}&kintok=${kintok}`}></img>
 
                   {
                     this.state.loaded ? (

@@ -5,9 +5,9 @@ import { Provider }                 from 'react-redux';
 //     syncHistoryWithStore,
 //     routerReducer
 // }                                   from 'preact-router-redux'
-import App                          from '../components/app';
+import App                          from './components/app';
 
-import { configureStore } from '../store/configureStore-ENV_TARGET';
+import { configureStore } from './store/configureStore-ENV_TARGET';
 
 const store = configureStore();
 

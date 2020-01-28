@@ -1,19 +1,12 @@
-import { h, Component } from 'preact';
-import style from './style.less';
+import React, { Component } from 'react';
+import style from './style.module.less';
 
-export default class Header extends Component {
-	render() {
-		return (
-			<header class={style.header}>
+export default function() {
+    return (
+      <header className={style.header}>
         <h1>
           get any Twitter GIF from URL
         </h1>
-				<nav>
-					{/* <a href="/">Home</a>
-					<a href="/privacy">Privacy</a>
-					<a href="/eula">Eula</a> */}
-				</nav>
-			</header>
-		);
-	}
+      </header>
+    );
 }
