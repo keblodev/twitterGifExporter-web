@@ -4,7 +4,7 @@ import App from './app';
 
 import './style/index.less';
 
-ReactDOM.render(<App />, document.body);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // register ServiceWorker via OfflinePlugin, for prod only:
 if (process.env.NODE_ENV==='production') {
@@ -15,5 +15,3 @@ if (process.env.NODE_ENV==='production') {
 if (module.hot) {
     module.hot.accept('./containers/Root-ENV_TARGET', () => requestAnimationFrame(init) );
 }
-
-init();
