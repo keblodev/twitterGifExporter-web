@@ -37,8 +37,6 @@ const cleanOptions = {
 };
 
 var vendors = [
-    'preact',
-    'preact-redux',
     'date-fns/format',
     'date-fns/is_equal',
     'date-fns/is_after',
@@ -59,8 +57,8 @@ module.exports = {
         app: path.resolve(__dirname, './src/index.js'),
         // app: [],
         vendors: [
-            'preact',
-            'preact-redux',
+            'react',
+            'react-redux',
             'babel-polyfill',
         ]
     },
@@ -87,9 +85,7 @@ module.exports = {
         alias: {
             components: path.resolve(__dirname, "src/components"),    // used for tests
             style: path.resolve(__dirname, "src/style"),
-            'react': 'preact-compat',
-            'react-dom': 'preact-compat',
-            'react-redux': 'preact-redux'
+            common: path.resolve(__dirname, "src/common"),
         }
     },
 

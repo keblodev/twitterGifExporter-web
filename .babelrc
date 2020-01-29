@@ -7,7 +7,7 @@
   "plugins": [
     ["transform-async-to-generator"],
     ["transform-decorators-legacy"],
-    ["transform-react-jsx", { "pragma": "h" }]
+    ["transform-react-jsx"]
   ],
   "env": {
     "test": {
@@ -15,11 +15,6 @@
         ["dynamic-import-node"],
         ["module-resolver", {
             "root": ["./src"],
-            "alias": {
-                "react": "preact-compat",
-                "react-dom": "preact-compat",
-                "react-redux": "preact-redux"
-            }
           }]
       ]
     }

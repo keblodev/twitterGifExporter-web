@@ -1,5 +1,5 @@
-import { h, render } from 'preact';
-import { route } from 'preact-router';
+// import { h, render } from 'preact';
+// import { route } from 'preact-router';
 import { expect } from 'chai';
 
 import App from '../../src/components/app';

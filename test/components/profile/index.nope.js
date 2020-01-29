@@ -1,4 +1,4 @@
-import { h, render } from 'preact';
+// import { h, render } from 'preact';
 import { expect } from 'chai';
 
 import Profile from '../../../src/components/profile';

@@ -1,4 +1,4 @@
-import { h } from 'preact';
+// import { h } from 'preact';
 import { expect } from 'chai';
 
 import Header from '../../../src/components/header';
