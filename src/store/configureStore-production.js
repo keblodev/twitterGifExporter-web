@@ -4,9 +4,9 @@ import {
     combineReducers,
     applyMiddleware
 }                               from 'redux';
-import {
-    routerReducer,
-}                               from 'preact-router-redux'
+// import {
+//     routerReducer,
+// }                               from 'preact-router-redux'
 import persistState             from 'redux-localstorage'
 import thunk                    from 'redux-thunk';
 import createBrowserHistory     from 'history/createBrowserHistory'
