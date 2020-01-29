@@ -24,7 +24,7 @@ const enhancer = composeEnhancers(
     //todo: it lifts the state
     //and currently we monitor entire app state
     persistState(
-        'app',
+        'twitterAppRoot',
         {
             key: LOCAL_STORE_KEY
         }
@@ -38,7 +38,7 @@ const enhancer = composeEnhancers(
 export function configureStore(initialState) {
     const store = createStore(
         combineReducers({
-            app: rootReducer,
+            twitterAppRoot: rootReducer,
             // routing: routerReducer
         }),
         initialState,
