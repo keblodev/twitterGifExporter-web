@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useLocale } from 'common/utils/hooks';
+import { localize } from 'common/utils/locale';
 import style from './style.module.less';
 
-export default function() {
+import Vl from 'common/components/loaders/view'
+
+export default function({locale}) {
+    const {isLocaleUpdating} = useLocale(__dirname, {locale})
     return (
       <header className={style.header}>
-        <h1>
-          get any Twitter GIF from a public URL
-        </h1>
+        <Vl loading={isLocaleUpdating}><h1>{localize('twitterGiffer.headerText')}</h1></Vl>
       </header>
     );
 }

@@ -1,39 +1,44 @@
-import React, { Component } from 'react';
-import style from './style.module.less';
+import React, { useState } from 'react';
 
+import { useLocale } from 'common/utils/hooks';
+import { localize } from 'common/utils/locale';
+
+import Vl from 'common/components/loaders/view'
+
+import style from './style.module.less';
 import {BASE_URL} from '../../statics/config'
 
-export default class Home extends Component {
+export default ({locale}) => {
+    const {isLocaleUpdating} = useLocale(__dirname, {locale})
 
-  _url = ""
+    let _url = ""
 
-  state = {
-    url: "",
-    loaded: false
-  }
+    const [state, setState] = useState({
+      url: "",
+      loaded: false
+    })
 
-  onChange = (e) => {
-    this._url = e && e.target.value;
-  }
-
-  onKeyUp = (e) => {
-    switch (e.keyCode) {
-      case 13:
-          this.onSubmit();
-          break;
+    const onChange = (e) => {
+      _url = e && e.target.value;
     }
-  }
 
-  onSubmit = () => {
-    if (this.state.url !== this._url) {
-      this.setState({
-        url: this._url,
-        loaded: false
-      });
+    const onKeyUp = (e) => {
+      switch (e.keyCode) {
+        case 13:
+            onSubmit();
+            break;
+      }
     }
-  }
 
-  render = () => {
+    const onSubmit = () => {
+      if (state.url !== _url) {
+        setState({
+          url: _url,
+          loaded: false
+        });
+      }
+    }
+
     // TODO:
     const kintok = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDEiLCJhdWQiOiJLaW50b0h1YkdhdGV3YXkiLCJleHAiOjE1Njk4MzM0MzAsImlhdCI6MTU2ODYyMzgzMCwiaXNzIjoiS2ludG9IdWJHYXRld2F5Iiwic3ViIjoie1wic2Vzc2lvbklkXCI6XCIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDFcIn0ifQ.OSeVXgThvROslyHEUFSeTNSOUuudlFSxD87u6PCt9VM'
     const baseUrl = 'https://e229472f-d0e1-4705-a961-ac77d8349f81.api.beta.kintohub.com/twitterapi'
@@ -43,49 +48,44 @@ export default class Home extends Component {
         <div
             className={style.homeContainer}
         >
-            <h1>You found it! A simple Twitter GIF converter!</h1>
-            <h2>Just paste your twitter link bellow and wait for magic to happen.</h2>
+            <Vl loading={isLocaleUpdating}><h1>{localize('twitterGiffer.text1')}</h1></Vl>
+            <Vl loading={isLocaleUpdating}><h2>{localize('twitterGiffer.text2')}</h2></Vl>
             <div
               className={style.inputContainer}
             >
               <input
                 tabIndex="1"
-                placeholder="paste your url here and press a button..."
+                placeholder={localize('twitterGiffer.placeholder1')}
                 className={style.input}
                 type="text"
-                onKeyUp={this.onKeyUp}
-                onChange={this.onChange}
+                onKeyUp={onKeyUp}
+                onChange={onChange}
               />
               <button
                 className={style.button}
                 tabIndex="2"
-                // onClick={this.onSubmit}
-              >Get that shit</button>
+              ><Vl loading={isLocaleUpdating}>{localize('twitterGiffer.buttonText')}</Vl></button>
             </div>
             {
-              this.state.url ? (
+              state.url ? (
                 <div style={{margin: '30px'}}>
                   {
-                    !this.state.loaded ? (
-                      <div>
-                        Getting your thing...
-                      </div>
+                    !state.loaded ? (
+                      <div>{localize('twitterGiffer.text3')}...</div>
                     ) : null
                   }
                   <img
-                  onLoad={()=> this.setState({loaded: true})}
+                  onLoad={()=> setState({...state, loaded: true})}
                   className={[
                     style.img,
-                    !this.state.loaded ? style.imgSpin : ""
+                    !state.loaded ? style.imgSpin : ""
                   ].join(" ")}
                   // process.env.KINTOK
-                  src={`${baseUrl}/process?url=${this.state.url}&kintok=${kintok}`}></img>
+                  src={`${baseUrl}/process?url=${state.url}&kintok=${kintok}`}></img>
 
                   {
-                    this.state.loaded ? (
-                      <div>
-                        Now right click on img -> Save As...
-                      </div>
+                    state.loaded ? (
+                      <div>{localize('twitterGiffer.text4')}...</div>
                     ) : null
                   }
                 </div>
@@ -95,5 +95,3 @@ export default class Home extends Component {
       </div>
     );
   }
-
-}

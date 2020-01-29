@@ -5,14 +5,14 @@ import style from './style.less';
 
 import Home from './home';
 
-export default function({history}) {
+export default function({locale}) {
     return (
       <div id="app">
         <div className={[
             style.appContainer,
         ].join(' ')}>
-          <Header />
-          <Home path="/" />
+          <Header locale={locale} />
+          <Home locale={locale} />
         </div>
       </div>
     );

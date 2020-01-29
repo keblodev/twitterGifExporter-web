@@ -1,0 +1,11 @@
+{
+  "twitterGiffer": {
+      "__root":   "__this is a system key__",
+      "text1" :   "あなたは見つけた！シンプルなTwitter GIFコンバーター！",
+      "text2" :   "twitterのリンクを下に貼り付けて、魔法が起こるのを待ちます。",
+      "placeholder1": "ここにURLを貼り付けてボタンを押してください",
+      "buttonText": "その「ジフ」を入手",
+      "text3": "「ジフ」を取得する",
+      "text4": "画像を右クリック->名前を付けて保存をクリック"
+  }
+}

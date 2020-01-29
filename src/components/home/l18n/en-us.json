@@ -1,0 +1,11 @@
+{
+    "twitterGiffer": {
+        "__root":   "__this is a system key__",
+        "text1" :   "You found it! A simple Twitter GIF converter!",
+        "text2" :   "Just paste your twitter link bellow and wait for magic to happen.",
+        "placeholder1": "paste your url here and press a button",
+        "buttonText": "Get that shit",
+        "text3": "Getting your thing",
+        "text4": "Now right click on img -> Save As"
+    }
+}
