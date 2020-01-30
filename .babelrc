@@ -1,21 +1,28 @@
 {
-  "sourceMaps": true,
-  "presets": [
-    ["es2015", { "loose":true }],
-    "stage-0"
-  ],
+  // "sourceMaps": true,
+  "presets": ["@babel/preset-env"],
   "plugins": [
-    ["transform-async-to-generator"],
-    ["transform-decorators-legacy"],
-    ["transform-react-jsx"]
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-runtime",
+    // ["transform-async-to-generator"],
+    // ["transform-decorators-legacy"],
+    // ["transform-react-jsx"],
+    // ["transform-imports", {
+    //   "redux-form": {
+    //     "transform": "redux-form/es/${member}",
+    //     "preventFullImport": true
+    //   }
+    // }],
+    // ["lodash", { "id": ["lodash-compat"] }],
+    "@babel/plugin-transform-react-jsx"
   ],
   "env": {
     "test": {
       "plugins": [
-        ["dynamic-import-node"],
-        ["module-resolver", {
-            "root": ["./src"],
-          }]
+        // ["dynamic-import-node"],
+        // ["module-resolver", {
+        //     "root": ["./src"]
+        //   }]
       ]
     }
   }

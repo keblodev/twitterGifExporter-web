@@ -1,4 +1,5 @@
 import webpack                      from 'webpack';
+import ExtractTextPlugin            from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin            from 'html-webpack-plugin';
 import ScriptExtHtmlWebpackPlugin   from 'script-ext-html-webpack-plugin';
 import autoprefixer                 from 'autoprefixer';
@@ -11,6 +12,7 @@ import { BundleAnalyzerPlugin }     from 'webpack-bundle-analyzer';
 import Dotenv                       from 'dotenv-webpack';
 import MiniCssExtractPlugin         from 'mini-css-extract-plugin';
 import UglifyJsPlugin               from 'uglifyjs-webpack-plugin';
+import RobotstxtPlugin              from 'robotstxt-webpack-plugin';
 
 const ENV = process.env.NODE_ENV || "development";
 
@@ -35,19 +37,6 @@ const cleanOptions = {
     dry:      false
 };
 
-var vendors = [
-    'date-fns/format',
-    'date-fns/is_equal',
-    'date-fns/is_after',
-    'date-fns/difference_in_days',
-    'date-fns/difference_in_hours',
-    'date-fns/each_day',
-    'date-fns/last_day_of_week',
-    'date-fns/start_of_week',
-    'date-fns/get_day',
-    'date-fns/get_days_in_month',
-    'babel-polyfill',
-];
 
 module.exports = {
     context: path.resolve(__dirname, "src"),
@@ -58,7 +47,7 @@ module.exports = {
         vendors: [
             'react',
             'react-redux',
-            'babel-polyfill',
+            // 'babel-polyfill',
         ]
     },
 
@@ -83,6 +72,7 @@ module.exports = {
         ],
         alias: {
             components: path.resolve(__dirname, "src/components"),    // used for tests
+            src: path.resolve(__dirname, "src"),
             style: path.resolve(__dirname, "src/style"),
             common: path.resolve(__dirname, "src/common"),
         }
@@ -133,6 +123,31 @@ module.exports = {
                     comments: false
                 },
               },
+            }),
+            new RobotstxtPlugin({
+              policy: [
+                {
+                  userAgent: "Googlebot",
+                  allow: "/",
+                  // disallow: "/search",
+                  crawlDelay: 2
+                },
+                {
+                  userAgent: "OtherBot",
+                  allow: "/", //["/allow-for-all-bots", "/allow-only-for-other-bot"],
+                  // disallow: ["/admin", "/login"],
+                  crawlDelay: 2
+                },
+                {
+                  userAgent: "*",
+                  allow: "/",
+                  // disallow: "/search",
+                  crawlDelay: 10,
+                  cleanParam: "ref /articles/"
+                }
+              ],
+              // TODO: sitemap: "http://example.com/sitemap.xml",
+              host: process.env.BASE_URL
             })
         ]: []
     },
@@ -159,22 +174,20 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            javascriptEnabled: true,
-                            modules: true,
                             sourceMap: CSS_MAPS,
+                            modules: true,
                             importLoaders: 1,
-                            minimize: {
-                              reduceInitial: false
-                            }
+                            // minimize: {
+                            //   reduceInitial: false
+                            // }
                         }
                     },
                     {
                         loader: `postcss-loader`,
                         options: {
-                            javascriptEnabled: true,
                             sourceMap: CSS_MAPS,
-                            plugins: () => {
-                                autoprefixer({ browsers: [ 'last 2 versions' ] });
+                            config: {
+                              path: 'postcss.config.js'
                             }
                         }
                     },
@@ -186,35 +199,32 @@ module.exports = {
 			},
 			{
 				test: /\.(less|css)$/,
-                exclude: [path.resolve(__dirname, 'src/components')],
-                use: [
-                    ENV==='production' ? MiniCssExtractPlugin.loader : 'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: { javascriptEnabled: true,
-                            sourceMap: CSS_MAPS,
-                            importLoaders: 1,
-                            minimize: {
-                              reduceInitial: false
-                            }
-                          }
-                    },
-                    {
-                        loader: `postcss-loader`,
-                        options: {
-                            javascriptEnabled: true,
-                            sourceMap: CSS_MAPS,
-                            plugins: () => {
-                                autoprefixer({ browsers: [ 'last 2 versions' ] });
-                            }
-                        }
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: { javascriptEnabled: true, sourceMap: CSS_MAPS }
-                    }
-                ]
+        exclude: [path.resolve(__dirname, 'src/components')],
+        use: [
+            ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                    modules: true,
+                    sourceMap: CSS_MAPS,
+                    importLoaders: 1,
+                  }
             },
+            {
+                loader: `postcss-loader`,
+                options: {
+                    sourceMap: CSS_MAPS,
+                    config: {
+                      path: 'postcss.config.js'
+                    }
+                }
+            },
+            {
+                loader: 'less-loader',
+                options: { javascriptEnabled: true, sourceMap: CSS_MAPS }
+            }
+        ]
+      },
 			{
                 type: 'javascript/auto',
 				test: /\.json$/,
@@ -255,7 +265,6 @@ module.exports = {
                 LOCAL_STORAGE_KEY:          JSON.stringify(process.env.LOCAL_STORAGE_KEY),
                 APP_VERSION:                JSON.stringify(process.env.APP_VERSION),
                 BASE_URL:                   JSON.stringify(process.env.BASE_URL),
-                KINTOK:                     JSON.stringify(process.env.KINTOK),
             }
         }),
         new HtmlWebpackPlugin({
@@ -347,14 +356,14 @@ module.exports = {
         process: false,
         Buffer: false,
         __filename: false,
-        __dirname: false,
+        __dirname: true,
         setImmediate: false
     },
 
-    // devtool: ENV==='production' ? 'source-map' : 'cheap-module-eval-source-map',
+    devtool: ENV==='production' ? 'source-map' : 'cheap-module-eval-source-map',
 
     devServer: {
-        port: process.env.PORT || 5000,
+        port: process.env.PORT || 3000,
         host: 'localhost',
         publicPath: '/',
         contentBase: './src',
