@@ -9,16 +9,16 @@ import {
 // }                               from 'preact-router-redux'
 import persistState             from 'redux-localstorage'
 import thunk                    from 'redux-thunk';
-import createBrowserHistory     from 'history/createBrowserHistory'
+// import createBrowserHistory     from 'history/createBrowserHistory'
 
 import rootReducer              from '../reducers';
 import middleware               from '../middleware';
 import { LOCAL_STORE_KEY } from '../statics/config';
 
 // Create a history of your choosing (we're using a browser history in this case)
-export const history = createBrowserHistory();
+// export const history = createBrowserHistory();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (typeof window !== `undefined` && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const enhancer = composeEnhancers(
     //todo: it lifts the state
@@ -39,7 +39,7 @@ export function configureStore(initialState) {
     return createStore(
         combineReducers({
             app: rootReducer,
-            routing: routerReducer
+            // routing: routerReducer
         }),
         initialState,
         enhancer

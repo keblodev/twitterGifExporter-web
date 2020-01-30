@@ -6,7 +6,7 @@ import { localize } from 'common/utils/locale';
 import Vl from 'common/components/loaders/view'
 
 import style from './style.module.less';
-import {BASE_URL} from '../../statics/config'
+import {API_URL, API_TOKEN} from '../../statics/config'
 
 export default ({locale}) => {
     const {isLocaleUpdating} = useLocale(__dirname, {locale})
@@ -39,10 +39,6 @@ export default ({locale}) => {
       }
     }
 
-    // TODO:
-    const kintok = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDEiLCJhdWQiOiJLaW50b0h1YkdhdGV3YXkiLCJleHAiOjE1Njk4MzM0MzAsImlhdCI6MTU2ODYyMzgzMCwiaXNzIjoiS2ludG9IdWJHYXRld2F5Iiwic3ViIjoie1wic2Vzc2lvbklkXCI6XCIwOWIzYzMzNi1kODVmLTExZTktOWU1MS0zNjBlNTkzOWEwZDFcIn0ifQ.OSeVXgThvROslyHEUFSeTNSOUuudlFSxD87u6PCt9VM'
-    const baseUrl = 'https://e229472f-d0e1-4705-a961-ac77d8349f81.api.beta.kintohub.com/twitterapi'
-
     return (
       <div className={style.home}>
         <div
@@ -64,11 +60,12 @@ export default ({locale}) => {
               <button
                 className={style.button}
                 tabIndex="2"
+                onClick={onSubmit}
               ><Vl loading={isLocaleUpdating}>{localize('twitterGiffer.buttonText')}</Vl></button>
             </div>
             {
               state.url ? (
-                <div style={{margin: '30px'}}>
+                <div className={style.imgContainer}>
                   {
                     !state.loaded ? (
                       <div>{localize('twitterGiffer.text3')}...</div>
@@ -80,8 +77,7 @@ export default ({locale}) => {
                     style.img,
                     !state.loaded ? style.imgSpin : ""
                   ].join(" ")}
-                  // process.env.KINTOK
-                  src={`${baseUrl}/process?url=${state.url}&kintok=${kintok}`}></img>
+                  src={`${API_URL}/process?url=${state.url}&kintok=${API_TOKEN}`}></img>
 
                   {
                     state.loaded ? (

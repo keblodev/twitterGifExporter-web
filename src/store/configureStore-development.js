@@ -18,7 +18,7 @@ import { LOCAL_STORE_KEY } from '../statics/config';
 // Create a history of your choosing (we're using a browser history in this case)
 // export const history = createBrowserHistory();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (typeof window !== `undefined` && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const enhancer = composeEnhancers(
     //todo: it lifts the state
