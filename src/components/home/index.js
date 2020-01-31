@@ -75,7 +75,7 @@ export default ({locale}) => {
                       <div>{localize('twitterGiffer.text3')}...</div>
                     ) : null
                   }
-                  <im
+                  <img
                   alt="gif"
                   onLoad={()=> setState({...state, loaded: true})}
                   className={[
