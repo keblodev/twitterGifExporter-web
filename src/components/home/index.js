@@ -25,8 +25,10 @@ export default ({locale}) => {
     const onKeyUp = (e) => {
       switch (e.keyCode) {
         case 13:
-            onSubmit();
-            break;
+          onSubmit();
+          break;
+        default:
+          break;
       }
     }
 
@@ -50,6 +52,7 @@ export default ({locale}) => {
               className={style.inputContainer}
             >
               <input
+                // eslint-disable-next-line
                 tabIndex="1"
                 placeholder={localize('twitterGiffer.placeholder1')}
                 className={style.input}
@@ -59,6 +62,7 @@ export default ({locale}) => {
               />
               <button
                 className={style.button}
+                // eslint-disable-next-line
                 tabIndex="2"
                 onClick={onSubmit}
               ><Vl loading={isLocaleUpdating}>{localize('twitterGiffer.buttonText')}</Vl></button>
@@ -71,14 +75,14 @@ export default ({locale}) => {
                       <div>{localize('twitterGiffer.text3')}...</div>
                     ) : null
                   }
-                  <img
+                  <im
+                  alt="gif"
                   onLoad={()=> setState({...state, loaded: true})}
                   className={[
                     style.img,
                     !state.loaded ? style.imgSpin : ""
                   ].join(" ")}
-                  src={`${API_URL}/process?url=${state.url}&kintok=${API_TOKEN}`}></img>
-
+                  src={`${API_URL}/process?url=${state.url}&kintok=${API_TOKEN}`}/>
                   {
                     state.loaded ? (
                       <div>{localize('twitterGiffer.text4')}...</div>
