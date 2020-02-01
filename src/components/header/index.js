@@ -10,7 +10,11 @@ export default function({locale}) {
     return (
       <header className={style.header}>
         <Vl loading={isLocaleUpdating}><h1>{localize('twitterGiffer.headerText')}</h1></Vl>
-        <a className={style.srcLink} href="https://github.com/ronanamsterdam/twitterGifExporter-web/tree/feat/sub-app">
+        <a
+          className={style.srcLink}
+          href="https://github.com/ronanamsterdam/twitterGifExporter-web/tree/feat/sub-app"
+          target="_blank" rel="noopener noreferrer"
+        >
           <div>-> {localize('twitterGiffer.srcLink')}</div>
         </a>
       </header>
