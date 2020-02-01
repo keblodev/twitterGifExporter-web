@@ -48,6 +48,7 @@ export default ({locale}) => {
         >
             <Vl loading={isLocaleUpdating}><h1>{localize('twitterGiffer.text1')}</h1></Vl>
             <Vl loading={isLocaleUpdating}><h2>{localize('twitterGiffer.text2')}</h2></Vl>
+            <Vl loading={isLocaleUpdating}><p className={style.exampleText}>( {localize('twitterGiffer.text5')}: https://twitter.com/Stephan06631759/status/1222084924703936513 )</p></Vl>
             <div
               className={style.inputContainer}
             >

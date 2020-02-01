@@ -5,6 +5,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   display: flex;
+  justify-content: space-between;
   position: sticky;
   top: 10px;
   width: 100%;
@@ -19,11 +20,34 @@
     font-weight: 400;
     color: #FFF;
   }
+
+  .srcLink {
+    .transition(color, background);
+    align-items: center;
+    display: flex;
+    color: var(--nav-link-color);
+    padding: 10px;
+    text-decoration: underline;
+    &:hover {
+      background: @black;
+      color: @white;
+    }
+
+    * {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
 }
 
 @media (max-width: @tablet-break) {
   .header {
-    position: initial;
     margin-top: 10px;
+    position: initial;
+    flex-direction: column;
+
+    .srcLink {
+      justify-content: center;
+    }
   }
 }
