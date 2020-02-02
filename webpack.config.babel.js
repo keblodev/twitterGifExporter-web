@@ -169,33 +169,37 @@ module.exports = {
 				// Transform our own .(less|css) files with PostCSS and CSS-modules
 				test: /\.(less|css)$/,
 				include: [path.resolve(__dirname, 'src/components')],
-                use: [
-                    ENV==='production' ? MiniCssExtractPlugin.loader : 'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: CSS_MAPS,
-                            modules: true,
-                            importLoaders: 1,
-                            // minimize: {
-                            //   reduceInitial: false
-                            // }
-                        }
-                    },
-                    {
-                        loader: `postcss-loader`,
-                        options: {
-                            sourceMap: CSS_MAPS,
-                            config: {
-                              path: 'postcss.config.js'
-                            }
-                        }
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: { javascriptEnabled: true, sourceMap: CSS_MAPS }
+        use: [
+            ENV==='production' ? MiniCssExtractPlugin.loader : 'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                    sourceMap: CSS_MAPS,
+                    modules: true,
+                    importLoaders: 1,
+                    // minimize: {
+                    //   reduceInitial: false
+                    // }
+                }
+            },
+            {
+                loader: `postcss-loader`,
+                options: {
+                    sourceMap: CSS_MAPS,
+                    config: {
+                      path: 'postcss.config.js'
                     }
-                ]
+                }
+            },
+            {
+                loader: 'less-loader',
+                options: {
+                  javascriptEnabled: true,
+                  sourceMap: CSS_MAPS,
+                  paths: [path.resolve(__dirname, 'src')],
+                }
+            }
+        ]
 			},
 			{
 				test: /\.(less|css)$/,
@@ -221,7 +225,11 @@ module.exports = {
             },
             {
                 loader: 'less-loader',
-                options: { javascriptEnabled: true, sourceMap: CSS_MAPS }
+                options: {
+                  javascriptEnabled: true,
+                  sourceMap: CSS_MAPS,
+                  paths: [path.resolve(__dirname, 'src')],
+                }
             }
         ]
       },
